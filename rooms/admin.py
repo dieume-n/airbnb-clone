@@ -18,4 +18,3 @@ class RoomAdmin(admin.ModelAdmin):
 class PhotoAdmin(admin.ModelAdmin):
     """ Photo Admin definition """
     pass
-
