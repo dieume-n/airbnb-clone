@@ -8,3 +8,14 @@ class TimeStampedModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class AbstractItem(TimeStampedModel):
+    """ Abstract Item Model definition """
+    name = models.CharField(max_length=80)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name

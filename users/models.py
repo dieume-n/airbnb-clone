@@ -41,5 +41,3 @@ class User(AbstractUser):
     language = models.CharField(choices=LANGUAGE_CHOICES, max_length=10, null=True, blank=True)
     currency = models.CharField(choices=CURRENCY_CHOICE, max_length=5, null=True, blank=True)
     is_superhost = models.BooleanField(default=False)
-
-    pass
