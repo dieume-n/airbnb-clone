@@ -49,6 +49,13 @@ class Room(core_models.TimeStampedModel):
     facilities = models.ManyToManyField(Facility, related_name='rooms', blank=True)
     house_rules = models.ManyToManyField(HouseRule, related_name='rooms', blank=True)
 
+    def total_rating(self):
+        all_reviews = self.reviews.all()
+        review_sum = 0.0
+        for review in all_reviews:
+            review_sum += review.rating_average()
+        return review_sum/len(all_reviews)
+
     def __str__(self):
         return self.name
 
