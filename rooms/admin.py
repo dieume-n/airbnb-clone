@@ -35,11 +35,18 @@ class RoomAdmin(admin.ModelAdmin):
         )
     )
     list_display = ('name', 'country', 'city', 'price', 'guests', 'beds', 'bedrooms', 'baths', 'check_in', 'check_out',
-                    'instant_book')
+                    'instant_book', 'count_amenities')
+    ordering = ('price', 'bedrooms')
 
-    list_filter = ('instant_book', 'host__is_superhost', 'room_type', 'amenities', 'facilities', 'house_rules', 'city', 'country')
+    list_filter = ('instant_book', 'host__is_superhost', 'room_type', 'amenities', 'facilities', 'house_rules', 'city',
+                   'country')
     search_fields = ("=city", "^host__username")
     filter_horizontal = ("amenities", "facilities", "house_rules")
+
+    def count_amenities(self, obj):
+        return obj.amenities.count()
+
+    count_amenities.short_description = "# amenities"
 
 
 @admin.register(models.Photo)
