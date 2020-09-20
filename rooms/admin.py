@@ -26,7 +26,7 @@ class RoomAdmin(admin.ModelAdmin):
         ),
         (
             "Spaces",
-            {"fields": ("guests", "bedrooms", "baths")}
+            {"fields": ("guests", "bedrooms", "beds", "baths")}
         ),
         (
             "More About the Space",
