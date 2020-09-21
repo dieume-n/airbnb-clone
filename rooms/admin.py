@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import mark_safe
 from . import models
 
 
@@ -59,4 +60,10 @@ class RoomAdmin(admin.ModelAdmin):
 @admin.register(models.Photo)
 class PhotoAdmin(admin.ModelAdmin):
     """ Photo Admin definition """
-    pass
+    list_display = ('__str__', 'get_thumbnail')
+
+    def get_thumbnail(self, obj):
+        return mark_safe(f'<a href="{obj.file.url}" target="_blank">Click to see</a>')
+
+    get_thumbnail.short_description = "Thumbnail"
+
