@@ -12,9 +12,13 @@ class ItemAdmin(admin.ModelAdmin):
         return obj.rooms.count()
 
 
+class PhotoInline(admin.TabularInline):
+    model = models.Photo
+
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
     """ Room Admin definition """
+    inlines = (PhotoInline,)
 
     fieldsets = (
         (
@@ -41,7 +45,7 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = ('name', 'country', 'city', 'price', 'guests', 'beds', 'bedrooms', 'baths', 'check_in', 'check_out',
                     'instant_book', 'count_amenities', 'count_photos', 'total_rating')
     ordering = ('price', 'bedrooms')
-
+    raw_id_fields = ('host',)
     list_filter = ('instant_book', 'host__is_superhost', 'room_type', 'amenities', 'facilities', 'house_rules', 'city',
                    'country')
     search_fields = ("=city", "^host__username")
