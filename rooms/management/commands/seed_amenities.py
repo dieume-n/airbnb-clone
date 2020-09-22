@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from rooms.models import Amenity
 
 amenities = [
@@ -21,7 +21,7 @@ amenities = [
     'TV',
     'High chair',
     'Smoke detector',
-    'Private bathroom'
+    'Private bathroom',
 ]
 
 
